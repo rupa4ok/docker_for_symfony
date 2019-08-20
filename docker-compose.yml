@@ -1,0 +1,42 @@
+version: '3'
+services:
+  manager-nginx:
+    build:
+      context: ./manager/docker/development
+      dockerfile: nginx.docker
+    volumes:
+      - ./manager:/app
+    depends_on:
+      - manager-php-fpm
+    ports:
+      - "8083:80"
+  manager-php-fpm:
+    build:
+      context: ./manager/docker/development
+      dockerfile: php-fpm.docker
+    volumes:
+      - ./manager:/app
+  manager-php-cli:
+    build:
+      context: ./manager/docker/development
+      dockerfile: php-cli.docker
+    volumes:
+      - ./manager:/app
+      - composer:/root/.composer/cache
+    tty: true
+  postgres:
+    image: postgres:9.6
+    ports:
+      - '5433:5432'
+    container_name: 'postgresql1'
+    working_dir: /app
+    restart: always
+    environment:
+      POSTGRES_DB: 'app'
+      POSTGRES_USER: 'app'
+      POSTGRES_PASSWORD: 'secret'
+    volumes:
+      - ./manager/var/dump:/app/dump
+      - ./manager/var/data/postgresql:/var/lib/postgresql/data
+volumes:
+  composer:
