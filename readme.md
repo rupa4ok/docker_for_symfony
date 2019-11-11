@@ -1,7 +1,7 @@
 # docker-php-nginx-postgres-composer
 Docker Compose configuration to run PHP 7.3 with Nginx, PHP-FPM + PHP-FPM-CLI, PostgreSQL 10.1 and Composer.
 
-##Optionally install 
+## Optionally install 
 
 1) Redis for cache
 2) Redis queue server 
@@ -30,11 +30,11 @@ Simply run `docker-compose up` and you are done.
 
 Nginx will be available on `localhost:8080, localhost:80` and PostgreSQL on `localhost:54321, localhost:5432`.
 
-####To check the status of containers
+#### To check the status of containers
 
 run `docker-compose ps`
 
-####Container logs
+#### Container logs
 
 run `docker-compose logs <container-name>`
 
