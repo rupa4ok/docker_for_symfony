@@ -9,7 +9,7 @@ services:
     depends_on:
       - manager-php-fpm
     ports:
-      - "8083:80"
+      - "8080:80"
   manager-php-fpm:
     build:
       context: ./manager/docker/development
@@ -25,9 +25,9 @@ services:
       - composer:/root/.composer/cache
     tty: true
   postgres:
-    image: postgres:9.6
+    image: postgres:10.1
     ports:
-      - '5433:5432'
+      - '54321:5432'
     container_name: 'postgresql1'
     working_dir: /app
     restart: always
